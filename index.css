@@ -1,11 +1,70 @@
+header{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .dog-container {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
     margin-top: 20px;
 }
+
 .dog-image {
-    width: 200px;
-    height: auto;
-    border: 2px solid #333;
-    border-radius: 8px;
+    height: 30vh;
+    width: auto;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .dog-image {
+        height: 25vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .dog-image {
+        height: 20vh;
+    }
+}
+
+
+
+/*Esconde a checkbox*/
+#burger {
+    display: none;
+}
+
+label {
+    display: inline-block;
+    padding-left: 27px;
+    font-size: 50px;
+    color: cornflowerblue;
+}
+
+/*Esconde menu*/
+nav {
+    display: none;
+}
+
+/*mostra menu*/
+#burger:checked + label + nav {
+    display: block;
+}
+
+a{
+    display: block;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 12pt;
+    color: black;
+    border: 1px solid grey;
+    margin: 10px;
+    width:120px;
+    margin-left: 30px;
 }

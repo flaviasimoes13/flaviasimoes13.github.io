@@ -9,7 +9,7 @@ async function fetchDogBreeds() {
             displayDogImage(breed, imageUrl);
         }
     } catch (error) {
-        console.error('Erro ao buscar raças de cães:', error);
+        console.error('Erro nas raças de cães:', error);
     }
 }
 
@@ -20,7 +20,7 @@ async function fetchDogImage(breed) {
         const data = await response.json();
         return data.message; //link img
     } catch (error) {
-        console.error(`Erro ao buscar imagem para a raça ${breed}:`, error);
+        console.error(`Erro na imagem para a raça ${breed}:`, error);
     }
 }
 
