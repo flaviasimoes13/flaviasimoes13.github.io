@@ -35,20 +35,20 @@ async function fetchRandomElements() {
 }
 
 function displayDog(divIndex, imageUrl, name) {
-    let container = document.getElementById(`dogDiv${divIndex}`);
+    let containerImg = document.getElementById(`dogDiv${divIndex}`);
+    let containerName = document.getElementById(`name${divIndex}`);
 
-    let imgElement = document.createElement('img');
+    let imgElement = document.createElement('img'); //cria elemento img
     imgElement.src = imageUrl;
-    let nameElement = document.createElement('h2');
-    nameElement.textContent = name;
 
     imgElement.alt = `Imagem de um cão aleatório`;
     imgElement.classList.add('dog-image');
 
-    let figure = document.createElement('figure');
+    let figure = document.createElement('figure'); //coloca a imagem da api no elemento img
     figure.appendChild(imgElement);
-    container.appendChild(figure);
-    container.appendChild(nameElement);
+    containerImg.appendChild(figure);
+
+    containerName.textContent = name; //coloca o nome da api no elemento h2
 }
 
 

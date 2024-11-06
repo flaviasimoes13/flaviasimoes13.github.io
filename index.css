@@ -1,56 +1,77 @@
-header {
-    display: flex;
-    flex-wrap: wrap;
-}
+/*///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////// header
+///////////////////////////////////////////////////////////////////////*/
+@media (max-width: 2000px) {
+    header {
+        display: flex;
+        /*flex-wrap: wrap;*/
+        flex-direction: column;
+    }
 
-.dog-container {
-    /*display: flex;
-    flex-wrap: wrap;*/
-    display: flex;
-  flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-}
+    label {
+        font-size: 50px;
+    }
 
-.dog-image {
-    height: 30vh;
-    width: auto;
-    max-width: 100%;
-    border-radius: 10px;
+    h1 {
+        position: relative;
+        font-size: 45px;
+        text-align: center;
+        align-content: center;
+        bottom: 90px;
+    }
 }
 
 @media (max-width: 768px) {
-    .dog-image {
-        height: 25vh;
+    header {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    label {
+        font-size: 30px;
+    }
+
+    h1 {
+        position: relative;
+        font-size: 30px;
+        text-align: center;
+        align-content: center;
+        bottom: 55px;
     }
 }
 
 @media (max-width: 480px) {
-    .dog-image {
-        height: 20vh;
+    header {
+        display: flex;
     }
-}
 
+    label {
+        font-size: 30px;
+    }
 
-
-/*Esconde a checkbox*/
-#burger {
-    display: none;
+    h1 {
+        position: relative;
+        font-size: 20px;
+        text-align: center;
+        align-content: center;
+        bottom: 42px;
+    }
 }
 
 label {
     display: inline-block;
-    padding-left: 27px;
-    font-size: 50px;
+    padding-left: 10px;
     color: cornflowerblue;
 }
 
-/*Esconde menu*/
+#burger {
+    display: none;
+}
+
 nav {
     display: none;
 }
 
-/*mostra menu*/
 #burger:checked+label+nav {
     display: block;
 }
@@ -68,4 +89,36 @@ a {
     margin: 10px;
     width: 120px;
     margin-left: 30px;
+}
+
+
+/*///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////// main
+///////////////////////////////////////////////////////////////////////*/
+.dog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dog-image {
+    height: 30vh;
+    width: auto;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .dog-image {
+        height: 25vh;
+        width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .dog-image {
+        height: 20vh;
+        width: auto;
+    }
 }
