@@ -1,40 +1,56 @@
-async function fetchDogBreeds() {
-    try {
-        // Lista de raças
-        const fixedBreeds = ['pitbull', 'beagle', 'bulldog/english', 'poodle', 'husky'];
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////// Fotos de Cães
+///////////////////////////////////////////////////////////////////////////////////////////
 
-        //mostra uma imagem por ordem da lista
-        for (const breed of fixedBreeds) {
-            const imageUrl = await fetchDogImage(breed);
-            displayDogImage(breed, imageUrl);
+async function fetchDogElements() {
+    try {
+        let numberOfElements = 5;
+
+        for (let i = 1; i <= numberOfElements; i++) {
+            let {imageUrl, name} = await fetchRandomElements();
+            displayDog(i, imageUrl, name);
         }
     } catch (error) {
-        console.error('Erro nas raças de cães:', error);
+        console.error('Erro ao buscar raças de cães:', error);
     }
 }
 
-async function fetchDogImage(breed) {
+async function fetchRandomElements() {
     try {
-        //procura imagem random para cada raca especificada
-        const response = await fetch(`https://dog.ceo/api/breed/${breed}/images/random`);
-        const data = await response.json();
-        return data.message; //link img
+        let responseBreed = await fetch(`https://dog.ceo/api/breeds/image/random`);
+        let dataBreeds = await responseBreed.json();
+
+        let responseNames = await fetch('https://randomuser.me/api/?nat=us');
+        let dataNames = await responseNames.json();
+        let firstName = dataNames.results[0].name.first;
+
+        return {
+            imageUrl: dataBreeds.message,
+            name: firstName
+        };
     } catch (error) {
-        console.error(`Erro na imagem para a raça ${breed}:`, error);
+        console.error('Erro ao buscar imagem/nome');
+        return null;
     }
 }
 
-function displayDogImage(breed, imageUrl) {
-    //HTML a imagem
-    const container = document.getElementById('dogImages');
-    const imgElement = document.createElement('img');
+function displayDog(divIndex, imageUrl, name) {
+    let container = document.getElementById(`dogDiv${divIndex}`);
+
+    let imgElement = document.createElement('img');
     imgElement.src = imageUrl;
-    imgElement.alt = `Imagem de um cão da raça ${breed.replace('/', ' ')}`;
+    let nameElement = document.createElement('h2');
+    nameElement.textContent = name;
+
+    imgElement.alt = `Imagem de um cão aleatório`;
     imgElement.classList.add('dog-image');
 
-    const figure = document.createElement('figure');
+    let figure = document.createElement('figure');
     figure.appendChild(imgElement);
     container.appendChild(figure);
+    container.appendChild(nameElement);
 }
 
-document.addEventListener('DOMContentLoaded', fetchDogBreeds);
+
+
+document.addEventListener('DOMContentLoaded', fetchDogElements);
