@@ -9,7 +9,9 @@
     }
 
     label {
+        position: relative;
         font-size: 50px;
+        bottom: 90px;
     }
 
     h1 {
@@ -17,7 +19,6 @@
         font-size: 45px;
         text-align: center;
         align-content: center;
-        bottom: 90px;
     }
 }
 
@@ -28,7 +29,9 @@
     }
 
     label {
+        position: relative;
         font-size: 30px;
+        bottom: 60px;
     }
 
     h1 {
@@ -36,7 +39,6 @@
         font-size: 30px;
         text-align: center;
         align-content: center;
-        bottom: 55px;
     }
 }
 
@@ -46,7 +48,9 @@
     }
 
     label {
+        position: relative;
         font-size: 30px;
+        bottom: 45px;
     }
 
     h1 {
@@ -54,7 +58,6 @@
         font-size: 20px;
         text-align: center;
         align-content: center;
-        bottom: 42px;
     }
 }
 
@@ -95,18 +98,35 @@ a {
 /*///////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////// main
 ///////////////////////////////////////////////////////////////////////*/
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+    margin-top: 20px;
+}
+
 .dog-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 20px;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .dog-image {
-    height: 30vh;
-    width: auto;
-    max-width: 100%;
     border-radius: 10px;
+}
+
+@media (max-width: 2000px) {
+    .dog-image {
+        height: 50vh;
+        width: auto;
+    }
 }
 
 @media (max-width: 768px) {
@@ -117,8 +137,12 @@ a {
 }
 
 @media (max-width: 480px) {
+    section {
+        grid-template-columns: 1fr;
+    }
+
     .dog-image {
-        height: 20vh;
-        width: auto;
+        height: auto;
+        max-width: 100%;
     }
 }
