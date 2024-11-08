@@ -36,21 +36,27 @@ async function fetchRandomElements() {
 
 function displayDog(divIndex, imageUrl, name) {
     let containerImg = document.getElementById(`dogDiv${divIndex}`);
-    let containerName = document.getElementById(`name${divIndex}`);
+    let containerNameDiv = document.getElementById(`name${divIndex}`);
 
-    let imgElement = document.createElement('img'); //cria elemento img
-    imgElement.src = imageUrl;
+    if (containerImg && containerNameDiv) {
+        let imgElement = document.createElement('img');
+        imgElement.src = imageUrl;
+        imgElement.alt = `Imagem de um cão aleatório`;
+        imgElement.classList.add('dog-image');
 
-    imgElement.alt = `Imagem de um cão aleatório`;
-    imgElement.classList.add('dog-image');
+        let figure = document.createElement('figure');
+        figure.appendChild(imgElement);
+        containerImg.appendChild(figure);
 
-    let figure = document.createElement('figure'); //coloca a imagem da api no elemento img
-    figure.appendChild(imgElement);
-    containerImg.appendChild(figure);
-
-    containerName.textContent = name; //coloca o nome da api no elemento h2
+        let h2Element = containerNameDiv.querySelector('h2');
+        if (h2Element) {
+            h2Element.textContent = name;
+        } else {
+            console.error(`Elemento <h2> não encontrado dentro de name${divIndex}`);
+        }
+    } else {
+        console.error(`Elementos com ID 'dogDiv${divIndex}' ou 'name${divIndex}' não foram encontrados.`);
+    }
 }
-
-
 
 document.addEventListener('DOMContentLoaded', fetchDogElements);

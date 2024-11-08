@@ -15,10 +15,8 @@
     }
 
     h1 {
-        position: relative;
         font-size: 45px;
-        text-align: center;
-        align-content: center;
+        letter-spacing: 0.1em;
     }
 }
 
@@ -35,10 +33,8 @@
     }
 
     h1 {
-        position: relative;
         font-size: 30px;
-        text-align: center;
-        align-content: center;
+        letter-spacing: 0.1em;
     }
 }
 
@@ -54,11 +50,16 @@
     }
 
     h1 {
-        position: relative;
         font-size: 20px;
-        text-align: center;
-        align-content: center;
+        letter-spacing: 0.1em;
     }
+}
+
+h1 {
+    position: relative;
+    text-align: center;
+    align-content: center;
+    font-family: "Montserrat Simebold", Arial, sans-serif;
 }
 
 label {
@@ -85,7 +86,7 @@ a {
     padding-top: 10px;
     padding-bottom: 10px;
     text-decoration: none;
-    font-family: monospace;
+    font-family: "Montserrat Regular", Arial, sans-serif;
     font-size: 12pt;
     color: black;
     border: 1px solid grey;
@@ -98,51 +99,133 @@ a {
 /*///////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////// main
 ///////////////////////////////////////////////////////////////////////*/
+/*FONTES:
+font-family: "Montserrat Bold", Arial, sans-serif;
+font-family: "Georgia Condensed", Arial, sans-serif;*/
+
+.text-content h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: start;
-    margin-top: 20px;
-}
-
-.dog-container {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    padding-top: 25px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid grey;
 }
 
-.text-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.dog-image {
-    border-radius: 10px;
+section:nth-of-type(1)>.text-content,
+section:nth-of-type(3)>.text-content,
+section:nth-of-type(5)>.text-content {
+    margin-left: 0;
 }
 
 @media (max-width: 2000px) {
-    .dog-image {
-        height: 50vh;
-        width: auto;
+
+    section:nth-of-type(2),
+    section:nth-of-type(4) {
+        flex-direction: row-reverse;
+    }
+
+    figure {
+        margin: 0;
+        padding: 0;
+    }
+
+    .dog-container img {
+        width: 50vw;
+        height: auto;
+    }
+
+    section:nth-of-type(1)>.text-content,
+    section:nth-of-type(3)>.text-content,
+    section:nth-of-type(5)>.text-content {
+        padding-left: 50px;
+    }
+
+    .text-content h2 {
+        font-family: "Georgia Condensed", Arial, sans-serif;
+        font-size: 30pt;
+    }
+
+    .text-content p {
+        font-family: "Verdana Condensed", Arial, sans-serif;
+        font-size: 14pt;
     }
 }
 
 @media (max-width: 768px) {
-    .dog-image {
-        height: 25vh;
-        width: auto;
+
+    section:nth-of-type(2),
+    section:nth-of-type(4) {
+        flex-direction: row-reverse;
+    }
+
+    .dog-container img {
+        width: 50vw;
+        height: auto;
+    }
+
+    section:nth-of-type(1)>.text-content,
+    section:nth-of-type(3)>.text-content,
+    section:nth-of-type(5)>.text-content {
+        padding-left: 50px;
+    }
+
+    .text-content h2 {
+        font-size: 24pt;
     }
 }
 
 @media (max-width: 480px) {
     section {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 0;
+        padding-left: 0;
+        padding-bottom: 0;
+        text-align: center;
     }
 
-    .dog-image {
-        height: auto;
-        max-width: 100%;
+    section:nth-of-type(2),
+    section:nth-of-type(4) {
+        flex-direction: column;
+    }
+
+    .dog-container,
+    .text-content {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .dog-container img {
+        width: auto;
+        height: 50vh;
+        margin: 0 auto;
+        padding-top: 20px;
+    }
+
+    section:nth-of-type(1) .dog-container img {
+        padding-top: 0;
+    }
+
+    section:nth-of-type(1)>.text-content,
+    section:nth-of-type(3)>.text-content,
+    section:nth-of-type(5)>.text-content {
+        padding-left: 0;
+    }
+
+    .text-content h2 {
+        position: relative;
+        font-size: 24pt;
+        top: 20px;
+        text-align: center;
     }
 }
