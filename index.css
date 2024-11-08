@@ -1,57 +1,100 @@
 /*///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////// header
 ///////////////////////////////////////////////////////////////////////*/
+* {
+    margin: 0;
+}
+
 @media (max-width: 2000px) {
     header {
         display: flex;
-        /*flex-wrap: wrap;*/
         flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem 1rem 2rem 1rem;
+        /*padding-bottom: 2rem;*/
+        background-color: #cb94ff2e;
+        transition: height 0.3s ease;
+    }
+
+    header h1 {
+        font-size: 3rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    #burger {
+        opacity: 0;
+        position: absolute;
     }
 
     label {
-        position: relative;
-        font-size: 50px;
-        bottom: 90px;
+        font-size: 45pt;
+        cursor: pointer;
+        transition: transform 0.3s ease;
     }
 
-    h1 {
-        font-size: 45px;
-        letter-spacing: 0.1em;
+    label:hover {
+        transform: scale(1.2);
+    }
+
+    nav {
+        display: none;
+        margin-top: 1rem;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #333;
+        padding: 0.5rem 1rem;
+        display: inline;
+    }
+
+    #burger:checked+label+nav {
+        display: flex;
+        gap: 1rem;
+        flex-direction: row;
+        padding-top: 10px;
+    }
+
+    nav a:hover {
+        background-color: #debbff;
     }
 }
+
 
 @media (max-width: 768px) {
     header {
         display: flex;
-        flex-wrap: wrap;
+        height: 185px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
     }
 
     label {
         position: relative;
-        font-size: 30px;
-        bottom: 60px;
-    }
-
-    h1 {
-        font-size: 30px;
-        letter-spacing: 0.1em;
+        font-size: 45px;
     }
 }
 
 @media (max-width: 480px) {
     header {
         display: flex;
+        height: 150px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
     }
 
     label {
-        position: relative;
         font-size: 30px;
-        bottom: 45px;
-    }
-
-    h1 {
-        font-size: 20px;
-        letter-spacing: 0.1em;
     }
 }
 
@@ -60,12 +103,12 @@ h1 {
     text-align: center;
     align-content: center;
     font-family: "Montserrat Simebold", Arial, sans-serif;
+    letter-spacing: 0.1em;
 }
 
 label {
     display: inline-block;
-    padding-left: 10px;
-    color: cornflowerblue;
+    width: 6%;
 }
 
 #burger {
@@ -81,18 +124,11 @@ nav {
 }
 
 a {
-    display: block;
-    padding-left: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-decoration: none;
     font-family: "Montserrat Regular", Arial, sans-serif;
-    font-size: 12pt;
-    color: black;
+    font-size: 11pt;
     border: 1px solid grey;
     margin: 10px;
-    width: 120px;
-    margin-left: 30px;
+    text-align: center;
 }
 
 
@@ -143,6 +179,13 @@ section:nth-of-type(5)>.text-content {
     section:nth-of-type(3)>.text-content,
     section:nth-of-type(5)>.text-content {
         padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    section:nth-of-type(2)>.text-content,
+    section:nth-of-type(4)>.text-content {
+        padding-left: 5px;
+        padding-right: 50px;
     }
 
     .text-content h2 {
@@ -152,7 +195,9 @@ section:nth-of-type(5)>.text-content {
 
     .text-content p {
         font-family: "Verdana Condensed", Arial, sans-serif;
-        font-size: 14pt;
+        font-size: 12pt;
+        line-height: 18pt;
+        text-align: justify;
     }
 }
 
@@ -171,11 +216,26 @@ section:nth-of-type(5)>.text-content {
     section:nth-of-type(1)>.text-content,
     section:nth-of-type(3)>.text-content,
     section:nth-of-type(5)>.text-content {
-        padding-left: 50px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    section:nth-of-type(2)>.text-content,
+    section:nth-of-type(4)>.text-content {
+        padding-left: 5px;
+        padding-right: 50px;
     }
 
     .text-content h2 {
         font-size: 24pt;
+    }
+
+    .text-content p {
+        font-family: "Verdana Condensed", Arial, sans-serif;
+        font-size: 11pt;
+        line-height: 16pt;
+        text-align: justify;
+
     }
 }
 
@@ -188,6 +248,7 @@ section:nth-of-type(5)>.text-content {
         padding-left: 0;
         padding-bottom: 0;
         text-align: center;
+        padding-top: 30px;
     }
 
     section:nth-of-type(2),
@@ -206,14 +267,10 @@ section:nth-of-type(5)>.text-content {
     }
 
     .dog-container img {
-        width: auto;
-        height: 50vh;
+        width: 50vw;
+        height: auto;
         margin: 0 auto;
-        padding-top: 20px;
-    }
-
-    section:nth-of-type(1) .dog-container img {
-        padding-top: 0;
+        border: 5px solid #d5a9ff;
     }
 
     section:nth-of-type(1)>.text-content,
@@ -227,5 +284,17 @@ section:nth-of-type(5)>.text-content {
         font-size: 24pt;
         top: 20px;
         text-align: center;
+        border-bottom: 5px solid #d5a9ff;
+    }
+
+    .text-content p {
+        font-family: "Verdana Condensed", Arial, sans-serif;
+        font-size: 11pt;
+        line-height: 16pt;
+        padding-top: 25px;
+        padding-bottom: 20px;
+        padding-right: 20px;
+        padding-left: 20px;
+        margin: 0;
     }
 }
