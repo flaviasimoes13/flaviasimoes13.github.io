@@ -12,7 +12,6 @@
         align-items: center;
         text-align: center;
         padding: 1rem 1rem 2rem 1rem;
-        /*padding-bottom: 2rem;*/
         background-color: #cb94ff2e;
         transition: height 0.3s ease;
     }
@@ -104,6 +103,7 @@ h1 {
     align-content: center;
     font-family: "Montserrat Simebold", Arial, sans-serif;
     letter-spacing: 0.1em;
+    color: #5b5287;
 }
 
 label {
@@ -142,6 +142,8 @@ font-family: "Georgia Condensed", Arial, sans-serif;*/
 .text-content h2 {
     margin-top: 0;
     margin-bottom: 0;
+    font-family: "Georgia Condensed", Arial, sans-serif;
+    border-top: 5px solid #d5a9ff;
 }
 
 section {
@@ -149,13 +151,17 @@ section {
     padding-top: 25px;
     padding-left: 15px;
     padding-bottom: 10px;
-    border-bottom: 2px solid grey;
 }
 
 section:nth-of-type(1)>.text-content,
 section:nth-of-type(3)>.text-content,
 section:nth-of-type(5)>.text-content {
     margin-left: 0;
+}
+
+.text-content p {
+    font-family: "Verdana Condensed", Arial, sans-serif;
+    text-align: justify;
 }
 
 @media (max-width: 2000px) {
@@ -189,15 +195,12 @@ section:nth-of-type(5)>.text-content {
     }
 
     .text-content h2 {
-        font-family: "Georgia Condensed", Arial, sans-serif;
         font-size: 30pt;
     }
 
     .text-content p {
-        font-family: "Verdana Condensed", Arial, sans-serif;
         font-size: 12pt;
         line-height: 18pt;
-        text-align: justify;
     }
 }
 
@@ -231,10 +234,8 @@ section:nth-of-type(5)>.text-content {
     }
 
     .text-content p {
-        font-family: "Verdana Condensed", Arial, sans-serif;
         font-size: 11pt;
         line-height: 16pt;
-        text-align: justify;
 
     }
 }
@@ -285,10 +286,10 @@ section:nth-of-type(5)>.text-content {
         top: 20px;
         text-align: center;
         border-bottom: 5px solid #d5a9ff;
+        border-top: 0;
     }
 
     .text-content p {
-        font-family: "Verdana Condensed", Arial, sans-serif;
         font-size: 11pt;
         line-height: 16pt;
         padding-top: 25px;
