@@ -1,10 +1,6 @@
-///////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////// Fotos de Cães
-///////////////////////////////////////////////////////////////////////////////////////////
-
 async function fetchDogElements() {
     try {
-        let numberOfElements = 5;
+        let numberOfElements = 9;
 
         for (let i = 1; i <= numberOfElements; i++) {
             let {imageUrl, name} = await fetchRandomElements();
@@ -51,12 +47,24 @@ function displayDog(divIndex, imageUrl, name) {
         let h2Element = containerNameDiv.querySelector('h2');
         if (h2Element) {
             h2Element.textContent = name;
+            
+            // Adicionar o evento de clique no h2
+            h2Element.addEventListener('click', () => {
+                localStorage.setItem('selectedDog', JSON.stringify({ imageUrl, name }));
+                window.location.href = 'adoptMe.html';
+            });
         } else {
             console.error(`Elemento <h2> não encontrado dentro de name${divIndex}`);
         }
+
+        containerImg.addEventListener('click', () => {
+            localStorage.setItem('selectedDog', JSON.stringify({ imageUrl, name }));
+            window.location.href = 'adoptMe.html';
+        });
     } else {
         console.error(`Elementos com ID 'dogDiv${divIndex}' ou 'name${divIndex}' não foram encontrados.`);
     }
 }
+
 
 document.addEventListener('DOMContentLoaded', fetchDogElements);
