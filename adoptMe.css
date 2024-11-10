@@ -17,7 +17,9 @@ header {
 }
 
 header h1 {
-    font-family: "Montserrat extralight", Arial, sans-serif;
+    font-family: "Montserrat light", Arial, sans-serif;
+    color: #635994;
+    letter-spacing: 2px;
 }
 
 label {
@@ -96,7 +98,7 @@ img {
 .text-content h2 {
     font-family: "Montserrat Light", Arial, sans-serif;
     font-size: 1.5rem;
-    margin: 10px 0px 15px 20px;
+    margin: 10px 20px 15px 20px;
     padding-top: 5px;
     color: #333;
     border-top: 5px solid #d5a9ff;
@@ -107,9 +109,8 @@ p {
     font-size: 0.9rem;
     color: #333;
     background-color: white;
-    padding: 0 20px;
     margin: 0;
-    width: 100%;
+    width: 80%;
     box-sizing: border-box;
 }
 
@@ -143,10 +144,14 @@ p {
     nav a:hover {
         background-color: #debbff;
     }
+
+    p {
+        padding-left: 20px;
+    }
 }
 
 @media (max-width: 768px) {
-    header h1{
+    header h1 {
         font-size: 2rem;
     }
 
@@ -170,6 +175,10 @@ p {
 
     nav a {
         font-size: 0.9rem;
+    }
+
+    p {
+        padding: 0 20px;
     }
 }
 
@@ -197,5 +206,18 @@ p {
 
     nav a {
         font-size: 0.8rem;
+    }
+
+    .text-content h2 {
+        margin: 10px 0 15px 0;
+        padding-top: 5px;
+        padding-left: 10px;
+        color: #333;
+        border-top: 5px solid #d5a9ff;
+    }
+
+    p {
+        padding-left: 20px;
+        width: 100%;
     }
 }
