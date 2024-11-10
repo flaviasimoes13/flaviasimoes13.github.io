@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const selectedDog = JSON.parse(localStorage.getItem('selectedDog'));
+    const selectedDog = JSON.parse(sessionStorage.getItem('selectedDog'));
 
     if (selectedDog) {
         let dogImage = document.getElementsByClassName('dog-container')[0];
@@ -22,4 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error('Nenhum cão selecionado');
     }
+});
+
+const adoptButton = document.getElementById('adoptButton');
+const contactInfo = document.getElementById('contactInfo');
+
+adoptButton.addEventListener('click', () => {
+    contactInfo.classList.toggle('hidden');
 });

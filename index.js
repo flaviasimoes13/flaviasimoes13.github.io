@@ -1,40 +1,57 @@
 async function fetchDogElements() {
     let numberOfElements = 9;
 
-    for (let i = 1; i <= numberOfElements; i++) {
-        let dogData = await fetchRandomElements();
+    document.getElementById('spinner').style.display = 'flex';
 
-        if (dogData) { // verifica se houve sucesso em obter os dados
-            let { imageUrl, name } = dogData;
-            displayDog(i, imageUrl, name);
-        } else {
-            console.error(`Falha ao buscar dados para o cão de índice ${i}`);
-        }
+    let promises = [];
+    let loadedImages = new Set(); 
+
+    for (let i = 1; i <= numberOfElements; i++) {
+        promises.push(fetchRandomElements(i, loadedImages));
     }
+
+    let dogDataArray = await Promise.all(promises);
+
+    dogDataArray.forEach((dogData, index) => {
+        if (dogData) {
+            let { imageUrl, name } = dogData;
+            displayDog(index + 1, imageUrl, name); 
+        } else {
+            console.error(`Falha ao buscar dados para o cão de índice ${index + 1}`);
+        }
+    });
+
+    document.getElementById('spinner').style.display = 'none';
 }
 
-async function fetchRandomElements() {
-    let responseBreed = await fetch(`https://dog.ceo/api/breeds/image/random`);
-    
-    if (responseBreed.ok) { // verifica se a resposta foi bem-sucedida
-        let dataBreeds = await responseBreed.json();
+async function fetchRandomElements(index, loadedImages) {
+    let responseBreed;
+    let dataBreeds;
 
-        let responseNames = await fetch('https://randomuser.me/api/?nat=us');
-
-        if (responseNames.ok) { // verifica se a resposta para nomes foi bem-sucedida
-            let dataNames = await responseNames.json();
-            let firstName = dataNames.results[0].name.first;
-
-            return {
-                imageUrl: dataBreeds.message,
-                name: firstName
-            };
+    do {
+        responseBreed = await fetch(`https://dog.ceo/api/breeds/image/random`);
+        if (responseBreed.ok) {
+            dataBreeds = await responseBreed.json();
         } else {
-            console.error('Falha ao buscar nomes');
+            console.error(`Falha ao buscar imagem de cão para o índice ${index}`);
             return null;
         }
+    } while (loadedImages.has(dataBreeds.message)); 
+
+    loadedImages.add(dataBreeds.message);
+
+    let responseNames = await fetch('https://randomuser.me/api/?nat=us');
+
+    if (responseNames.ok) {
+        let dataNames = await responseNames.json();
+        let firstName = dataNames.results[0].name.first;
+
+        return {
+            imageUrl: dataBreeds.message,
+            name: firstName
+        };
     } else {
-        console.error('Falha ao buscar imagem de cão');
+        console.error(`Falha ao buscar nomes para o cão ${index}`);
         return null;
     }
 }
@@ -57,9 +74,8 @@ function displayDog(divIndex, imageUrl, name) {
         if (h2Element) {
             h2Element.textContent = name;
 
-            // Adicionar o evento de clique no h2
             h2Element.addEventListener('click', () => {
-                localStorage.setItem('selectedDog', JSON.stringify({ imageUrl, name }));
+                sessionStorage.setItem('selectedDog', JSON.stringify({ imageUrl, name }));
                 window.location.href = 'adoptMe.html';
             });
         } else {
@@ -67,7 +83,7 @@ function displayDog(divIndex, imageUrl, name) {
         }
 
         containerImg.addEventListener('click', () => {
-            localStorage.setItem('selectedDog', JSON.stringify({ imageUrl, name }));
+            sessionStorage.setItem('selectedDog', JSON.stringify({ imageUrl, name }));
             window.location.href = 'adoptMe.html';
         });
     } else {
@@ -75,4 +91,11 @@ function displayDog(divIndex, imageUrl, name) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', fetchDogElements);
+document.addEventListener('DOMContentLoaded', () => {
+    for (let i = 1; i <= 9; i++) {
+        document.getElementById(`dogDiv${i}`).innerHTML = '';
+        document.getElementById(`name${i}`).innerHTML = '<h2></h2>';
+    }
+
+    fetchDogElements();
+});

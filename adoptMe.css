@@ -87,6 +87,7 @@ section {
 
 img {
     width: 100%;
+    height: auto;
 }
 
 .content-container {
@@ -113,6 +114,50 @@ p {
     width: 80%;
     box-sizing: border-box;
 }
+
+#adoptButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: "Montserrat bold", Arial, sans-serif;
+    color: #fff;
+    background-color: #d5a9ff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    margin-left: 20px;
+}
+
+#adoptButton:hover {
+    background-color: #d5a9ff;
+}
+
+#contactInfo.hidden {
+    display: none;
+}
+
+#contactInfo p{
+    font-family: "Montserrat", Arial, sans-serif;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    animation: expand 0.3s ease-out;
+}
+
+@keyframes expand {
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
 
 @media (max-width: 2000px) {
     header h1 {
@@ -147,6 +192,7 @@ p {
 
     p {
         padding-left: 20px;
+        padding-bottom: 50px;
     }
 }
 
@@ -164,10 +210,6 @@ p {
         grid-template-columns: 1fr;
     }
 
-    img {
-        width: 50%;
-    }
-
     #burger:checked+label+nav {
         display: flex;
         gap: 1rem;
@@ -178,7 +220,7 @@ p {
     }
 
     p {
-        padding: 0 20px;
+        padding-bottom: 30px;
     }
 }
 
@@ -195,10 +237,6 @@ p {
         grid-template-columns: 1fr;
     }
 
-    img {
-        width: 100%;
-    }
-
     #burger:checked+label+nav {
         display: flex;
         gap: 1rem;
@@ -209,9 +247,7 @@ p {
     }
 
     .text-content h2 {
-        margin: 10px 0 15px 0;
-        padding-top: 5px;
-        padding-left: 10px;
+        margin: 15px 20px;
         color: #333;
         border-top: 5px solid #d5a9ff;
     }
