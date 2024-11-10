@@ -1,31 +1,40 @@
 async function fetchDogElements() {
-    try {
-        let numberOfElements = 9;
+    let numberOfElements = 9;
 
-        for (let i = 1; i <= numberOfElements; i++) {
-            let {imageUrl, name} = await fetchRandomElements();
+    for (let i = 1; i <= numberOfElements; i++) {
+        let dogData = await fetchRandomElements();
+
+        if (dogData) { // verifica se houve sucesso em obter os dados
+            let { imageUrl, name } = dogData;
             displayDog(i, imageUrl, name);
+        } else {
+            console.error(`Falha ao buscar dados para o cão de índice ${i}`);
         }
-    } catch (error) {
-        console.error('Erro ao buscar raças de cães:', error);
     }
 }
 
 async function fetchRandomElements() {
-    try {
-        let responseBreed = await fetch(`https://dog.ceo/api/breeds/image/random`);
+    let responseBreed = await fetch(`https://dog.ceo/api/breeds/image/random`);
+    
+    if (responseBreed.ok) { // verifica se a resposta foi bem-sucedida
         let dataBreeds = await responseBreed.json();
 
         let responseNames = await fetch('https://randomuser.me/api/?nat=us');
-        let dataNames = await responseNames.json();
-        let firstName = dataNames.results[0].name.first;
 
-        return {
-            imageUrl: dataBreeds.message,
-            name: firstName
-        };
-    } catch (error) {
-        console.error('Erro ao buscar imagem/nome');
+        if (responseNames.ok) { // verifica se a resposta para nomes foi bem-sucedida
+            let dataNames = await responseNames.json();
+            let firstName = dataNames.results[0].name.first;
+
+            return {
+                imageUrl: dataBreeds.message,
+                name: firstName
+            };
+        } else {
+            console.error('Falha ao buscar nomes');
+            return null;
+        }
+    } else {
+        console.error('Falha ao buscar imagem de cão');
         return null;
     }
 }
@@ -47,7 +56,7 @@ function displayDog(divIndex, imageUrl, name) {
         let h2Element = containerNameDiv.querySelector('h2');
         if (h2Element) {
             h2Element.textContent = name;
-            
+
             // Adicionar o evento de clique no h2
             h2Element.addEventListener('click', () => {
                 localStorage.setItem('selectedDog', JSON.stringify({ imageUrl, name }));
@@ -65,6 +74,5 @@ function displayDog(divIndex, imageUrl, name) {
         console.error(`Elementos com ID 'dogDiv${divIndex}' ou 'name${divIndex}' não foram encontrados.`);
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', fetchDogElements);
